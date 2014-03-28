@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Lat:</b>
+  <%= @crime.lat %>
+</p>
+
+<p>
+  <b>Lon:</b>
+  <%= @crime.lon %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @crime.category.name %>
+</p>
+
+<p>
+  <b>Level:</b>
+  <%= @crime.level %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @crime.comment %>
+</p>
+
+<p>
+  <b>Image url:</b>
+  <%= @crime.image_url %>
+</p>
+
+
+<%= link_to 'Edit', edit_crime_path(@crime) %> |
+<%= link_to 'Back', crimes_path %>

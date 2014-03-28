@@ -1,0 +1,55 @@
+<%= form_for(@crime) do |f| %>
+  <% if @crime.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@crime.errors.count, "error") %> prohibited this crime from being saved:</h2>
+
+      <ul>
+      <% @crime.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.hidden_field :lat %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :lon %>
+  </div>
+
+  <section id="section-category">
+    <% Category.all.each do |category| %>
+    <button type="button" id="category_btn_<%= category.id %>" class="category-btn btn btn-large" onclick='setCategory(<%=category.id %>, "<%=category.name.downcase%>"); event.preventDefault(); '><%= category.name %></button>
+    <% end %>
+    <div class="field">
+      <%= f.hidden_field :category_id %>
+    </div>
+  </section>
+
+  <section id="section-more-info">
+    <h2>You are reporting an incident involving <span id="category-name">&nbsp;</span></h2>
+    
+    <h3>When did it happen?</h3>
+    <div class="row">
+    <button class="btn btn-large span6" type="button">Now</button>
+    <button class="btn btn-large span6" type="button">Earlier</button>
+    </div>
+
+    <h3>Where did it happen?<h3>
+    <div class="input-append">
+      <input id="appendedInputButtons" type="text" placeholder="location or postcode" class="span12">
+      <button class="btn" type="button">
+        <i class="fa fa-map-marker"></i>
+      </button>
+    </div>
+
+    <h3>Tell us what happened</h3>
+    <%= f.text_area :comment, :class => "span12", rows: 5%>
+    <div class="actions">
+      <%= f.submit "Report Crime", :class => "btn btn-submit btn-large span12" %>
+    </div>
+
+  </section>
+
+<% end %>
